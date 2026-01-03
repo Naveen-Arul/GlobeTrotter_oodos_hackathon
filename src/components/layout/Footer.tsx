@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Globe, Instagram, Twitter, Facebook, Mail } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -18,20 +18,6 @@ const Footer: React.FC = () => {
             <p className="text-sm text-background/70">
               Empowering personalized travel planning. Create unforgettable journeys with smart itineraries and budget tracking.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-background/70 hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-background/70 hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-background/70 hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-background/70 hover:text-primary transition-colors">
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           {/* Product */}
