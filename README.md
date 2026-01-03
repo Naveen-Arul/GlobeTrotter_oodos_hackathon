@@ -1,67 +1,130 @@
-# Welcome to your Project
+# GlobeTrotter – Empowering Personalized Travel Planning
 
-## Project info
+## Overall Vision
 
-**URL**: https://example.com/projects/REPLACE_WITH_PROJECT_ID
+The overarching vision for **GlobeTrotter** is to become a personalized, intelligent, and collaborative platform that transforms the way individuals plan and experience travel.
 
-## How can I edit this code?
+The platform aims to empower users to dream, design, and organize trips with ease by offering an end-to-end travel planning tool that combines flexibility and interactivity.
 
-There are several ways of editing your application.
+It envisions a world where users can:
 
-**Use your preferred IDE**
+- Explore global destinations
+- Visualize journeys through structured itineraries
+- Make cost-effective decisions
+- Share travel plans within a community
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in the project.
+Making travel planning **as exciting as the trip itself**.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## Mission
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+The mission for the hackathon team is to build a **user-centric, responsive application** that simplifies the complexity of planning multi-city travel.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+The platform should provide travelers with intuitive tools to:
 
-# Step 3: Install the necessary dependencies.
-npm i
+- Add and manage travel stops and durations
+- Explore cities and activities of interest
+- Estimate trip budgets automatically
+- Visualize timelines and plans
+- Share trip plans with others
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+This involves constructing a solution that is:
 
-**Edit a file directly in GitHub**
+- Functional and insightful
+- Powered by a well-designed **relational database**
+- Supported by a smooth frontend experience
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Teams must focus on enabling users to:
 
-**Use GitHub Codespaces**
+- Organize personalized trips efficiently
+- Stay within budget
+- Enjoy full visibility of their journey
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## Problem Statement
 
-This project is built with:
+Design and develop a **complete travel planning application** where users can:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Create customized multi-city itineraries
+- Assign travel dates, activities, and budgets
+- Discover activities and destinations through search
+- Receive cost breakdowns and visual calendars
+- Share their plans publicly or with friends
 
-## How can I deploy this project?
+The application must demonstrate:
 
-Simply open the deployment platform and click on Share -> Publish.
+- Proper use of **relational databases**
+- Storage and retrieval of:
+  - User-specific itineraries
+  - Stops
+  - Activities
+  - Estimated expenses
+- Dynamic user interfaces that adapt to each user's trip flow
 
-## Can I connect a custom domain to my project?
+---
 
-Yes, you can!
+## Application Features & Screens
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 1. Login / Signup Screen
+- **Purpose:** Authenticate users to manage personal travel plans
+- **Key Features:** Email & password fields, login, signup, and password recovery
 
-Read more here: [Setting up a custom domain](https://docs.example.com/features/custom-domain#custom-domain)
+### 2. Dashboard / Home Screen
+- **Purpose:** Central hub showing upcoming trips, popular cities, and quick actions
+- **Key Features:** Welcome message, recent trips, "Plan New Trip" button, and recommendations
+
+### 3. Create Trip Screen
+- **Purpose:** Begin creating a personalized travel plan
+- **Key Features:** Trip name, dates, description, and optional cover photo
+
+### 4. My Trips (Trip List) Screen
+- **Purpose:** Access and manage existing or upcoming trips
+- **Key Features:** Trip cards with name, date range, and actions (edit/view/delete)
+
+### 5. Itinerary Builder Screen
+- **Purpose:** Construct the full day-wise trip plan interactively
+- **Key Features:** Add stops, select cities, assign activities, and reorder stops
+
+### 6. Itinerary View Screen
+- **Purpose:** Review the full plan in a structured format
+- **Key Features:** Day-wise layout, city headers, and activity blocks
+
+### 7. City Search
+- **Purpose:** Discover and include relevant cities
+- **Key Features:** Search bar, city list, filters, and "Add to Trip" button
+
+### 8. Activity Search
+- **Purpose:** Enrich trips with experiences
+- **Key Features:** Filters, add/remove buttons, and quick activity previews
+
+### 9. Trip Budget & Cost Breakdown Screen
+- **Purpose:** Help travelers stay within budget
+- **Key Features:** Cost breakdown, charts, and alerts for over-budget days
+
+### 10. Trip Calendar / Timeline Screen
+- **Purpose:** Visualize the journey and daily flow
+- **Key Features:** Calendar component, expandable day views, and drag-to-reorder activities
+
+### 11. Shared / Public Itinerary View Screen
+- **Purpose:** Allow others to view or copy trips
+- **Key Features:** Public URL, itinerary summary, and sharing options
+
+### 12. User Profile / Settings Screen
+- **Purpose:** Control personal data and preferences
+- **Key Features:** Editable profile fields, language preference, and saved destinations
+
+### 13. Admin / Analytics Dashboard (Optional)
+- **Purpose:** Monitor app adoption and usage
+- **Key Features:** User management tools and analytics
+
+---
+
+## Mockup Link
+
+Excalidraw Mockup: [https://link.excalidraw.com/l/65VNwvy7c4X/6CzbTgEeSr1](https://link.excalidraw.com/l/65VNwvy7c4X/6CzbTgEeSr1)
+
+---
+
+This README reflects the detailed project description and features implemented during the hackathon.
