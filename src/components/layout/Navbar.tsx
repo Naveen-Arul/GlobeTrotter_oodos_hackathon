@@ -41,16 +41,9 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="relative">
-              <Globe className="h-8 w-8 text-primary transition-transform group-hover:rotate-12" />
-              <motion.div
-                className="absolute inset-0 bg-primary/20 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </div>
+            <Globe className="h-8 w-8 text-primary transition-transform group-hover:rotate-12" />
             <span className="text-xl font-display font-bold text-foreground">
-              Globe<span className="text-primary">Trotter</span>
+              Project<span className="text-primary">App</span>
             </span>
           </Link>
 
