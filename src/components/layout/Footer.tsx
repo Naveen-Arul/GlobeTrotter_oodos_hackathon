@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-background/10 mt-8 pt-8 text-center text-sm text-background/50">
-          <p>© {new Date().getFullYear()} GlobeTrotter. All rights reserved. Made with ❤️ for travelers worldwide.</p>
+          <p>© {new Date().getFullYear()} GlobeTrotter. All rights reserved.</p>
         </div>
       </div>
     </footer>
