@@ -12,7 +12,9 @@ import {
   Copy,
   Eye,
   Grid,
-  List
+  List,
+  Route,
+  Layout as LayoutIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -218,9 +220,18 @@ const Trips: React.FC = () => {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
+                              <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/view`)}>
+                                <LayoutIcon className="mr-2 h-4 w-4" />
+                                View Itinerary
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/builder`)}>
+                                <Route className="mr-2 h-4 w-4" />
+                                Build Itinerary
+                              </DropdownMenuItem>
+                              <DropdownMenuSeparator />
                               <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}`)}>
                                 <Eye className="mr-2 h-4 w-4" />
-                                View
+                                View Details
                               </DropdownMenuItem>
                               <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/edit`)}>
                                 <Edit className="mr-2 h-4 w-4" />
@@ -298,9 +309,18 @@ const Trips: React.FC = () => {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/view`)}>
+                              <LayoutIcon className="mr-2 h-4 w-4" />
+                              View Itinerary
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/builder`)}>
+                              <Route className="mr-2 h-4 w-4" />
+                              Build Itinerary
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}`)}>
                               <Eye className="mr-2 h-4 w-4" />
-                              View
+                              View Details
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => navigate(`/trips/${trip.id}/edit`)}>
                               <Edit className="mr-2 h-4 w-4" />

@@ -9,7 +9,9 @@ import {
   TrendingUp, 
   Globe,
   ArrowRight,
-  Clock
+  Clock,
+  Route,
+  Layout as LayoutIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -149,12 +151,14 @@ const Dashboard: React.FC = () => {
                     return (
                       <Card 
                         key={trip.id} 
-                        className="cursor-pointer hover:shadow-md transition-shadow"
-                        onClick={() => navigate(`/trips/${trip.id}`)}
+                        className="hover:shadow-md transition-shadow"
                       >
                         <CardContent className="p-4">
                           <div className="flex gap-4">
-                            <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0">
+                            <div 
+                              className="w-20 h-20 rounded-lg overflow-hidden shrink-0 cursor-pointer"
+                              onClick={() => navigate(`/trips/${trip.id}`)}
+                            >
                               <img
                                 src={trip.coverImage || trip.cities[0]?.city.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=200&q=80'}
                                 alt={trip.name}
@@ -162,7 +166,12 @@ const Dashboard: React.FC = () => {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h3 className="font-semibold truncate">{trip.name}</h3>
+                              <h3 
+                                className="font-semibold truncate cursor-pointer hover:text-primary"
+                                onClick={() => navigate(`/trips/${trip.id}`)}
+                              >
+                                {trip.name}
+                              </h3>
                               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                                 <Calendar className="h-4 w-4" />
                                 <span>{format(new Date(trip.startDate), 'MMM d')} - {format(new Date(trip.endDate), 'MMM d, yyyy')}</span>
@@ -170,6 +179,24 @@ const Dashboard: React.FC = () => {
                               <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                                 <MapPin className="h-4 w-4" />
                                 <span>{trip.cities.length} {trip.cities.length === 1 ? 'city' : 'cities'}</span>
+                              </div>
+                              <div className="flex gap-2 mt-2">
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => navigate(`/trips/${trip.id}/view`)}
+                                >
+                                  <LayoutIcon className="h-3 w-3 mr-1" />
+                                  View
+                                </Button>
+                                <Button 
+                                  variant="outline" 
+                                  size="sm"
+                                  onClick={() => navigate(`/trips/${trip.id}/builder`)}
+                                >
+                                  <Route className="h-3 w-3 mr-1" />
+                                  Build
+                                </Button>
                               </div>
                             </div>
                             <div className="text-right shrink-0">
