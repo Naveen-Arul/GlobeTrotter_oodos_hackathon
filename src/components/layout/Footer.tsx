@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
             <Link to="/" className="flex items-center gap-2">
               <Globe className="h-8 w-8 text-primary" />
               <span className="text-xl font-display font-bold">
-                Project<span className="text-primary">App</span>
+                Globe<span className="text-primary">Trotter</span>
               </span>
             </Link>
             <p className="text-sm text-background/70">

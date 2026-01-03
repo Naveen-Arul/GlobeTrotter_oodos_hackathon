@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center gap-2 group">
             <Globe className="h-8 w-8 text-primary transition-transform group-hover:rotate-12" />
             <span className="text-xl font-display font-bold text-foreground">
-              Project<span className="text-primary">App</span>
+              Globe<span className="text-primary">Trotter</span>
             </span>
           </Link>
 
