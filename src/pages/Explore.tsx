@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, MapPin, Filter, X } from 'lucide-react';
+import { Search, MapPin, Filter, X, SlidersHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import Layout from '@/components/layout/Layout';
 import { cities } from '@/data/mockData';
 
@@ -12,6 +22,9 @@ const Explore: React.FC = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedContinent, setSelectedContinent] = useState<string | null>(null);
+  const [costFilter, setCostFilter] = useState<string>('all');
+  const [popularityFilter, setPopularityFilter] = useState<number[]>([0, 100]);
+  const [sortBy, setSortBy] = useState<string>('name');
 
   const continents = [...new Set(cities.map(c => c.continent))];
   
@@ -19,7 +32,21 @@ const Explore: React.FC = () => {
     const matchesSearch = city.name.toLowerCase().includes(search.toLowerCase()) ||
                          city.country.toLowerCase().includes(search.toLowerCase());
     const matchesContinent = !selectedContinent || city.continent === selectedContinent;
-    return matchesSearch && matchesContinent;
+    const matchesCost = costFilter === 'all' || city.costIndex === costFilter;
+    const matchesPopularity = city.popularity >= popularityFilter[0] && city.popularity <= popularityFilter[1];
+    return matchesSearch && matchesContinent && matchesCost && matchesPopularity;
+  }).sort((a, b) => {
+    if (sortBy === 'name') return a.name.localeCompare(b.name);
+    if (sortBy === 'popularity') return b.popularity - a.popularity;
+    if (sortBy === 'cost-low') {
+      const costOrder = { budget: 1, moderate: 2, luxury: 3 };
+      return costOrder[a.costIndex as keyof typeof costOrder] - costOrder[b.costIndex as keyof typeof costOrder];
+    }
+    if (sortBy === 'cost-high') {
+      const costOrder = { budget: 1, moderate: 2, luxury: 3 };
+      return costOrder[b.costIndex as keyof typeof costOrder] - costOrder[a.costIndex as keyof typeof costOrder];
+    }
+    return 0;
   });
 
   return (
@@ -31,16 +58,96 @@ const Explore: React.FC = () => {
         </motion.div>
 
         {/* Search & Filters */}
-        <div className="flex flex-wrap gap-4 mb-8">
-          <div className="relative flex-1 min-w-[200px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              placeholder="Search cities or countries..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10"
-            />
+        <div className="space-y-4 mb-8">
+          <div className="flex flex-wrap gap-4">
+            <div className="relative flex-1 min-w-[200px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                placeholder="Search cities or countries..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+            
+            {/* Sort Dropdown */}
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="name">Name (A-Z)</SelectItem>
+                <SelectItem value="popularity">Most Popular</SelectItem>
+                <SelectItem value="cost-low">Cost (Low to High)</SelectItem>
+                <SelectItem value="cost-high">Cost (High to Low)</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {/* Advanced Filters */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="default">
+                  <SlidersHorizontal className="h-4 w-4 mr-2" />
+                  Filters
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Advanced Filters</SheetTitle>
+                  <SheetDescription>
+                    Refine your search with detailed filters
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="space-y-6 mt-6">
+                  {/* Cost Filter */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">Cost Level</label>
+                    <Select value={costFilter} onValueChange={setCostFilter}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="All Costs" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Costs</SelectItem>
+                        <SelectItem value="budget">Budget</SelectItem>
+                        <SelectItem value="moderate">Moderate</SelectItem>
+                        <SelectItem value="luxury">Luxury</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Popularity Range */}
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Popularity: {popularityFilter[0]}% - {popularityFilter[1]}%
+                    </label>
+                    <Slider
+                      min={0}
+                      max={100}
+                      step={5}
+                      value={popularityFilter}
+                      onValueChange={setPopularityFilter}
+                      className="mt-2"
+                    />
+                  </div>
+
+                  {/* Reset Filters */}
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => {
+                      setCostFilter('all');
+                      setPopularityFilter([0, 100]);
+                      setSelectedContinent(null);
+                    }}
+                  >
+                    Reset All Filters
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
+
+          {/* Continent Filters */}
           <div className="flex gap-2 flex-wrap">
             {continents.map(continent => (
               <Button
@@ -57,6 +164,11 @@ const Explore: React.FC = () => {
                 <X className="h-4 w-4" />
               </Button>
             )}
+          </div>
+
+          {/* Results Count */}
+          <div className="text-sm text-muted-foreground">
+            Showing {filteredCities.length} of {cities.length} destinations
           </div>
         </div>
 
